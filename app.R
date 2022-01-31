@@ -1,0 +1,48 @@
+library(shiny)
+library(DT)
+
+rm(list=ls())
+
+# test
+
+# sample_table = readRDS("/R_work/Test app/local storage/sample_table.rds")
+sample_table = data.frame(col1 = as.character(c("one","two","three")),
+                         col2 = as.numeric(c(1,2,3)))
+  
+ui = fluidPage(
+  sidebarLayout(
+    sidebarPanel(
+      selectInput(
+        "input_name",
+        "Select name",
+        choices = c("Beavus","Butthead")
+      )
+    ),
+    mainPanel(
+      textOutput(
+        "output_name"
+      ),
+      DT::DTOutput("output_sample_table")
+    )
+  )
+)
+
+server = function(input,output,session){
+  output$output_name = renderText(paste0("Hello ",input$input_name,"!"))
+  output$output_sample_table = renderDT({
+    tableData = sample_table
+    datatable(tableData)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+
+
+
+
+
+
+
+
+
+
