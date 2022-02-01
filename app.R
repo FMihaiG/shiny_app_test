@@ -5,7 +5,7 @@ rm(list=ls())
 
 # test
 
-sample_table = readRDS("/R_work/Test app/local storage/sample_table.rds")
+sample_table = readRDS("/srv/shiny-server/shiny_app_test/local storage/sample_table.rds")
 # sample_table = data.frame(col1 = as.character(c("one","two","three","four","this is a loaded RDS table")),
 #                          col2 = as.numeric(c(1,2,3,4,5)))
   
